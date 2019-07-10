@@ -47,24 +47,24 @@ public class AdService {
     
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    @Produces({MediaType.TEXT_PLAIN})
+    @Produces({MediaType.APPLICATION_JSON})
     @Path("/post")
-    public String postAd(Ad a) throws Exception {
+    public Ad postAd(Ad a) throws Exception {
         checkContext(context, a);
         alist.add(a);
-        return "Added";
+        return a;
     }
     
     @PUT
     @Consumes(javax.ws.rs.core.MediaType.APPLICATION_JSON)
-    @Produces({MediaType.TEXT_PLAIN})
+    @Produces({MediaType.APPLICATION_JSON})
     @Path("/update")
-    public String updateAd(Ad a) {
+    public Ad updateAd(Ad a) {
         Ad adput = find(a.getId());
         adput.setTitle(a.getTitle());
         adput.setDescription(a.getDescription());
         adput.setContact(a.getContact());
-        return "Updated";
+        return a;
     }
     
     @DELETE
